@@ -82,9 +82,11 @@ export const useCheckout = () => {
     e.preventDefault();
     try {
       setLoading(true);
+      debugger;
       const user: any = await localforage.getItem('authSession');
       const payload = { ...order, user: user?._id, item: user?.cart };
       const { data } = await apiInstance.post('/api/v1/orders', payload);
+      debugger;
       setLoading(false);
       alert('Order Placed Successfully');
       // @ts-ignore

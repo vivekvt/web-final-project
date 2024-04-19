@@ -10,7 +10,7 @@ exports.deleteOrder = factory.deleteOne(OrderModel);
 
 // exports.createOrder = factory.createOne(OrderModel);
 exports.createOrder = catchAsync(async (req, res) => {
-  let order = await OrderModel.findOne(req?.body);
+  let order = await OrderModel.create(req?.body);
   await CartModel.findOneAndUpdate({ user: req?.body?.user }, { items: [] });
   return res.status(201).json({ order });
 });

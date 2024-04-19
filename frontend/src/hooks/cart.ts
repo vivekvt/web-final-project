@@ -35,9 +35,8 @@ export const useAddToCart = (product: IProduct | null) => {
   const addToCart = async () => {
     try {
       if (!user?._id) {
-        navigate('/login');
-      }
-      if (!alreadyInCart) {
+        return navigate('/login');
+      } else if (!alreadyInCart) {
         const newCart: any = [...(cart || []), { product, quantity }];
         dispatch(updateCart(newCart));
         saveCartToDatabase(newCart);
